@@ -17,7 +17,7 @@ test("renders todotable", () => {
   expect(table).toHaveTextContent(/go to coffee/i);
 });
 
-test("add todo", () => {
+test("add todo 1", () => {
   render(<App />);
   const desc = screen.getByPlaceholderText("Description");
   fireEvent.change(desc, { target: { value: "Go to coffee" } });
@@ -27,6 +27,18 @@ test("add todo", () => {
   fireEvent.click(button);
   const table = screen.getByRole("table");
   expect(table).toHaveTextContent(/go to coffee/i);
+});
+
+test("add todo 2", () => {
+  render(<App />);
+  const desc = screen.getByPlaceholderText("Description");
+  fireEvent.change(desc, { target: { value: "Study" } });
+  const date = screen.getByPlaceholderText("Date");
+  fireEvent.change(date, { target: { value: "02.02.2023" } });
+  const button = screen.getByText("Add");
+  fireEvent.click(button);
+  const table = screen.getByRole("table");
+  expect(table).toHaveTextContent(/study/i);
 });
 
 test("delete all todos", () => {
